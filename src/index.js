@@ -14,15 +14,8 @@ const client = new ApolloClient({
   })
 });
 
-const RANDOM_QUOTE_QUERY = gql`
-query getRandomQuote {
-  randomQuote {
-    text
-    author
-  }
-}
-`;
-client.query({ query: RANDOM_QUOTE_QUERY}).then(result => console.log("Query result:", result.data));
+
+
 
 ReactDOM.render(
   <React.StrictMode>
