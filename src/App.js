@@ -32,7 +32,7 @@ query getRandomQuote {
 `;
 
 function RandomQuote(){ 
-const {data, loading, error} =useQuery(RANDOM_QUOTE_QUERY, {
+const {data, loading, error, refetch} =useQuery(RANDOM_QUOTE_QUERY, {
   onError: error => {
     console.log("error", error);
     window.lastError = error;
@@ -47,7 +47,12 @@ if (error) {
   return "Could not load quote";
 }
 const {text, author} = data.randomQuote;
-return <Quote text={text} author={author}/>
+return (
+  <>
+<Quote text={text} author={author}/>
+<button onClick={()=>refetch()}> Get new quote</button>
+</>
+);
 }
 
 // client.query({ query: RANDOM_QUOTE_QUERY}).then(result => console.log("Query result:", result.data));
